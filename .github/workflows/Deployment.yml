@@ -41,4 +41,4 @@ jobs:
           entry_point: pipelines_trigger
           event_trigger_type: google.storage.object.finalize
           event_trigger_resource: test__function
-          timeout: 900s
+          timeout: 540s
