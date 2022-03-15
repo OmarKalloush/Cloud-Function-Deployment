@@ -42,4 +42,4 @@ jobs:
           event_trigger_type: google.storage.object.finalize
           event_trigger_resource: projects/terraform-cluster-task/buckets/test__function
           timeout: 540s
-          runtime: java11
+          runtime: python39
