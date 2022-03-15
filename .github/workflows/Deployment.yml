@@ -40,5 +40,5 @@ jobs:
           project_id: terraform-cluster-task
           entry_point: pipelines_trigger
           event_trigger_type: google.storage.object.finalize
-          event_trigger_resource: test__function
+          event_trigger_resource: projects/terraform-cluster-task/buckets/test__function
           timeout: 540s
