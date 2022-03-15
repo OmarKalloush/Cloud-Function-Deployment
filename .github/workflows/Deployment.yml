@@ -1,0 +1,38 @@
+---
+name: Deploy Cloud Function to GCP
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  PROJECT_ID: terraform-cluster-task
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: 'master'
+
+      - name: Setup GCP Service Account
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.SA_KEY }} 
+          project_id: terraform-cluster-task
+
+      - name: Deploy Cloud Function
+        id: deploy
+        uses: google-github-actions/deploy-cloud-functions@main
+        with:
+          name: pipelines_trigger
+          runtime: Python39
+          project_id: terraform-cluster-task
+          entry_point: pipelines_trigger
+          event_trigger_type: google.storage.object.finalize
+          event_trigger_resource: test__function
+          timeout: 900s
