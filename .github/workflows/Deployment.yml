@@ -36,7 +36,7 @@ jobs:
         uses: google-github-actions/deploy-cloud-functions@main
         with:
           name: pipelines_trigger
-          runtime: 'Python39'
+          runtime: Python38
           project_id: terraform-cluster-task
           entry_point: pipelines_trigger
           event_trigger_type: google.storage.object.finalize
