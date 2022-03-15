@@ -31,6 +31,7 @@ jobs:
       #     service_account_key: ${{ secrets.SA_KEY }} 
       #     project_id: terraform-cluster-task
 
+
       - name: Deploy Cloud Function
         id: deploy
         uses: google-github-actions/deploy-cloud-functions@main
