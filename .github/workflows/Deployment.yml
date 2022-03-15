@@ -19,11 +19,17 @@ jobs:
         with:
           ref: 'main'
 
-      - name: Setup GCP Service Account
-        uses: google-github-actions/setup-gcloud@master
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v0'
         with:
-          service_account_key: ${{ secrets.SA_KEY }} 
-          project_id: terraform-cluster-task
+          credentials_json: '${{ secrets.SA_KEY }}'
+        
+      # - name: Setup GCP Service Account
+      #   uses: google-github-actions/setup-gcloud@master
+      #   with:
+      #     service_account_key: ${{ secrets.SA_KEY }} 
+      #     project_id: terraform-cluster-task
 
       - name: Deploy Cloud Function
         id: deploy
