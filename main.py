@@ -9,3 +9,4 @@ def pipelines_trigger(event, context):
     print('Metageneration: {}'.format(event['metageneration']))
     print('Created: {}'.format(event['timeCreated']))
     print('Updated: {}'.format(event['updated']))
+    
