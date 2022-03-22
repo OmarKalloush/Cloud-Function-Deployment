@@ -4,10 +4,10 @@ name: Deploy Cloud Function to GCP
 on:
   push:
     branches:
-      - main
+      - master
 
 env:
-  PROJECT_ID: terraform-cluster-task
+  PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
 
 jobs:
   build:
@@ -30,10 +30,9 @@ jobs:
         uses: google-github-actions/deploy-cloud-functions@main
         with:
           name: pipelines_trigger
-          project_id: terraform-cluster-task
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
           entry_point: pipelines_trigger
           event_trigger_type: google.storage.object.finalize
-          event_trigger_resource: projects/terraform-cluster-task/buckets/test__function
+          event_trigger_resource: projects/${{ secrets.GCP_PROJECT_ID }}/buckets/${{ secrets.GCP_BUCKET_NAME }}
           timeout: 540s
           runtime: python39
-          
